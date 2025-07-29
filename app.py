@@ -1,7 +1,13 @@
+
 from fastapi import FastAPI, Query
+
 import random
 
 app = FastAPI()
+
+@app.get("/")
+def inicio():
+    return {"mensaje": "Bienvenido a AnMeCa. Usa /chistes o /chiste-random"}
 
 # Chistes buenos
 chistes_buenos = [
