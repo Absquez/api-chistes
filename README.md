@@ -36,6 +36,13 @@ chistes = [
     "¿Por qué la computadora fue al médico? Porque tenía un virus.",
     "¿Qué le dijo un 0 a un 8? Bonito cinturón.",
     "¿Por qué los programadores prefieren el invierno? Porque hay menos bugs."
+    "Hola, ¿está Agustín? No, estoy incómodo."
+    "Están dos borrachos y uno le dice al otro: 'No sigas bebiendo que te estás poniendo borroso'"
+    "¿Por qué las monjas no llevan sandalias? Porque son devotas."
+    "¿Qué hace un perro con un taladro? Ta ladrando."
+    "¿Qué le dice un techo a otro? «Techo de menos»."
+    "¿Cuál es el animal que libera al mono? El salmonete."
+    "¿Por qué los patos no tienen amigos? Porque son muy antipáticos"
 ]
 
 @app.get("/chiste")
