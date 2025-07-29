@@ -7,7 +7,7 @@ Fue creada usando **FastAPI**, desplegada en **Render** y conectada a una app vi
 
 ## 1. Requisitos
 
-- Python 3.9 o superior
+- Python 3.13.5
 - Git
 - Cuenta en GitHub
 - Cuenta en Render
@@ -99,7 +99,7 @@ https://api-chistes.onrender.com/chiste
 
 ### Crear app
 1. Ingresar a [ToolJet](https://tooljet.com)  
-2. Crear **Nueva App → Blank App**
+2. Crear **Nueva App → Blan**
 
 ### Conectar API
 1. En **Data Sources** → **Add new data source**  
@@ -126,7 +126,7 @@ https://api-chistes.onrender.com
 *(Reemplazar `query1` con el nombre real de la query)*
 
 ### Botón para refrescar
-- Arrastrar un **Button Widget**
+- Arrastrar un **Button**
 - Configurar acción **Run query** para la query de chistes
 
 ---
