@@ -93,6 +93,23 @@ def obtener_chistes(
 # ----------------------------
 # 4. Endpoint chiste aleatorio
 # ----------------------------
+@app.get("/chiste?categoria=malo")
+def chiste_malo(categoria: str = "malo"):
+    if categoria == "bueno":
+        return {"chiste": random.choice(chistes_buenos)}
+    elif categoria == "malo":
+        return {"chiste": random.choice(chistes_malos)}
+    else:
+        return {"chiste": random.choice(chistes_buenos + chistes_malos)}
+@app.get("/chiste?categoria=bueno")
+def chiste_random(categoria: str = "bueno"):
+    if categoria == "bueno":
+        return {"chiste": random.choice(chistes_buenos)}
+    elif categoria == "malo":
+        return {"chiste": random.choice(chistes_malos)}
+    else:
+        return {"chiste": random.choice(chistes_buenos + chistes_malos)}
+
 
 @app.get("/chiste-random")
 def chiste_random(categoria: str = None):
