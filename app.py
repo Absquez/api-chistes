@@ -61,7 +61,7 @@ chistes_malos = [
 def inicio():
     return {
         "mensaje": "Bienvenido a la API de chistes AnMeCa",
-        "endpoints": ["/chistes", "/chiste-random"]
+        "endpoints": ["/chistes", "/chiste-random","/chistes?categoria=malo","/chiste?categoria=bueno"]
     }
 
 # ----------------------------
