@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Query
 import random
 
-app = FastAPI(title="AnMeCa API", description="API de chistes buenos y malos con búsqueda", version="2.0")
+app = FastAPI(title="AnMeCa", description="API de chistes buenos y malos con búsqueda", version="2.0")
 
 # ----------------------------
 # 1. Datos: 20 chistes buenos y 20 malos
