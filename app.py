@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Query
 import random
 
-app = FastAPI(title="AnMeCa", description="API de chistes buenos y malos con búsqueda", version="2.0")
+app = FastAPI(title="AnMeCa", description="API de chistes buenos, malos y randoms", version="2.0")
 
 # ----------------------------
 # 1. Datos: 20 chistes buenos y 20 malos
@@ -70,8 +70,7 @@ def inicio():
 
 @app.get("/chistes")
 def obtener_chistes(
-    categoria: str = Query(None, description="bueno o malo"),
-    buscar: str = Query(None, description="texto a buscar en los chistes")
+    categoria: str = Query(None, description="bueno o malo")
 ):
     # Seleccionar la lista según categoría
     if categoria == "bueno":
@@ -93,22 +92,6 @@ def obtener_chistes(
 # ----------------------------
 # 4. Endpoint chiste aleatorio
 # ----------------------------
-@app.get("/chiste?categoria=malo")
-def chiste_malo(categoria: str = "malo"):
-    if categoria == "bueno":
-        return {"chiste": random.choice(chistes_buenos)}
-    elif categoria == "malo":
-        return {"chiste": random.choice(chistes_malos)}
-    else:
-        return {"chiste": random.choice(chistes_buenos + chistes_malos)}
-@app.get("/chiste?categoria=bueno")
-def chiste_random(categoria: str = "bueno"):
-    if categoria == "bueno":
-        return {"chiste": random.choice(chistes_buenos)}
-    elif categoria == "malo":
-        return {"chiste": random.choice(chistes_malos)}
-    else:
-        return {"chiste": random.choice(chistes_buenos + chistes_malos)}
 
 
 @app.get("/chiste-random")
