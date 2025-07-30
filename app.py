@@ -1,15 +1,12 @@
-
 from fastapi import FastAPI, Query
-
 import random
 
-app = FastAPI()
+app = FastAPI(title="AnMeCa API", description="API de chistes buenos y malos con búsqueda", version="2.0")
 
-@app.get("/")
-def inicio():
-    return {"mensaje": "Bienvenido a AnMeCa. Usa /chistes o /chiste-random"}
+# ----------------------------
+# 1. Datos: 20 chistes buenos y 20 malos
+# ----------------------------
 
-# Chistes buenos
 chistes_buenos = [
     "¿Por qué la computadora fue al médico? Porque tenía un virus.",
     "¿Qué le dijo un 0 a un 8? Bonito cinturón.",
@@ -33,7 +30,6 @@ chistes_buenos = [
     "¿Por qué la escoba llegó tarde? Porque se barrió."
 ]
 
-# Chistes malos
 chistes_malos = [
     "¿Por qué el pollo cruzó la carretera? Para llegar al otro lado.",
     "¿Qué le dice una impresora a otra? ¿Esa hoja es tuya o es impresión mía?",
@@ -57,18 +53,27 @@ chistes_malos = [
     "¿Por qué el zapato fue al médico? Porque tenía suela rota."
 ]
 
+# ----------------------------
+# 2. Endpoint raíz
+# ----------------------------
+
+@app.get("/")
+def inicio():
+    return {
+        "mensaje": "Bienvenido a la API de chistes AnMeCa",
+        "endpoints": ["/chistes", "/chiste-random"]
+    }
+
+# ----------------------------
+# 3. Endpoint chistes (lista y búsqueda)
+# ----------------------------
+
 @app.get("/chistes")
 def obtener_chistes(
     categoria: str = Query(None, description="bueno o malo"),
     buscar: str = Query(None, description="texto a buscar en los chistes")
 ):
-    """
-    Devuelve chistes por categoría (bueno/malo) y permite búsqueda.
-    Ejemplo:
-    /chistes?categoria=bueno
-    /chistes?buscar=computadora
-    /chistes?categoria=malo&buscar=pollo
-    """
+    # Seleccionar la lista según categoría
     if categoria == "bueno":
         lista = chistes_buenos
     elif categoria == "malo":
@@ -80,20 +85,17 @@ def obtener_chistes(
     if buscar:
         lista = [c for c in lista if buscar.lower() in c.lower()]
 
-    # Si no hay resultados
     if not lista:
-        return {"mensaje": "No se encontraron chistes."}
+        return {"mensaje": "No se encontraron chistes con esos parámetros."}
 
-    # Devolver lista completa
-    return {"chistes": lista}
+    return {"chistes": lista, "total": len(lista)}
+
+# ----------------------------
+# 4. Endpoint chiste aleatorio
+# ----------------------------
 
 @app.get("/chiste-random")
 def chiste_random(categoria: str = None):
-    """
-    Devuelve un chiste aleatorio.
-    Ejemplo:
-    /chiste-random?categoria=bueno
-    """
     if categoria == "bueno":
         return {"chiste": random.choice(chistes_buenos)}
     elif categoria == "malo":
